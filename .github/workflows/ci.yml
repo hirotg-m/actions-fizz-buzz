@@ -16,6 +16,8 @@ jobs:
         run: npm ci
       - name: Test
         run: npm test
+      - name: hello
+        run: echo "Hello, World!"
   lint:
     name: Lint
     runs-on: ubuntu-latest
