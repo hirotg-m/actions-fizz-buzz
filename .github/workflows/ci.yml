@@ -4,14 +4,17 @@ on: push
 jobs:
   unit-test:
     name: Unit Test
+    strategy:
+      matrix:
+        node-version: [20.x, 21.x, 22.x]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2.0.0
-      - name: Set Node.js 21.x
+      - name: Set Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: 21.x
+          node-version: ${{ matrix.node-version }}
       - name: node-version
         run: node --version
       - name: Install dependencies
@@ -26,10 +29,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.0.0
-      - name: Set Node.js 21.x
+      - name: Set Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: 21.x
+          node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: |
           node --version
